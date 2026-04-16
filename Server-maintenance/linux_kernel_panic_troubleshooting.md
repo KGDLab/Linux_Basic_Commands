@@ -27,8 +27,10 @@
 
 ### 3️⃣ Clear CMOS 後錯誤
 
+```
 KERNEL PANIC!
 UFS: Unable to mount root fs on unknown-block(0,0)
+```
 
 ---
 
@@ -48,7 +50,9 @@ Linux kernel / initramfs 損壞或設定錯誤
 
 ### Step 1️⃣ 確認 BIOS
 
+```
 Boot Option #1 = ubuntu (Samsung SSD)
+```
 
 ---
 
@@ -59,7 +63,9 @@ Boot Option #1 = ubuntu (Samsung SSD)
 
 ### Step 3️⃣ 選舊 kernel
 
+```
 Ubuntu, with Linux 6.14.x
+```
 
 ---
 
@@ -67,22 +73,40 @@ Ubuntu, with Linux 6.14.x
 
 ---
 
-## 🛠️ 修復指令
+## 🛠️ 修復指令（重要）
 
+請分開執行：
+
+```bash
 sudo update-initramfs -u
 sudo update-grub
+```
+
+或使用一行寫法：
+
+```bash
+sudo update-initramfs -u && sudo update-grub
+```
 
 ---
 
 ## 🔁 長期方案
 
 ### 移除壞 kernel
+
+```bash
 dpkg --list | grep linux-image
 sudo apt remove linux-image-6.17.0-20-generic
+```
+
+---
 
 ### 重新安裝 kernel
+
+```bash
 sudo apt update
 sudo apt install --reinstall linux-image-generic
+```
 
 ---
 
